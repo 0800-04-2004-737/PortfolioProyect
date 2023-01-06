@@ -1,17 +1,45 @@
-<h1>Home</h1>
+{% extends 'layout.html' %}
+{% block content %}
 
-{% for project in projects %}
+{% load static %}
 
-<h1>{{ project.title }}</h1>
-<p>{{ project.description }}</p>
-<img src="{{project.img.url}}" alt="">
-<br>
-</br>
+<header class="row bg-black">
+    <div class="col-md-4">
+        <img style="margin-left: -30px;" src="{% static 'portfolio/profile.jpeg' %}">
+    </div>
+    <div class="col-md-8 my-auto">
+        <h1>I'm Matias Krummel</h1>
+        <h3><strong>Web developer 💻</strong></h3>
+        <p>The ability to create amazing products is the number one reason why I love my [new] job. It also helps that I have the freedom to be creative, work with great people. So <strong>I loved it.</strong> I loved the thrill. I love to see my imagination come to life. I loved gadgets. I choose to be a web developer to bring my ideas to life and help others see what I think a better world looks like. I'm here because I want to change the world and help other people to have a better product. I entered the world of software development a year ago and a whole new world of possibilities appeared before my eyes ❤</p>
+        <a class="btn btn-primary bt-lg rounded-0 my-3" href="{% static 'portfolio/CV-KrummelMatias.pdf' %}" target="_blank">Download CV</a>
+    </div>
+</header>
 
-{% if project.url %}
+<div class="row my-4 text-center">
 
-<a href="{{project.url}}">{{project.url}}</a>
+    <h1>My Projects</h3>
+    <p>There are some projects made with django</p>
+    <br>
+    <hr>
+    </br>
+    
+    {% for project in projects %}
+    <div class="col-md-6 p-4 ">
+        <div class="card bg-black card-project">
+            <img src="{{project.img.url}}" class="card-img-top">
+            <div class="card-body">
+                
+                <h3>{{ project.title }}</h1>
+                <p>{{ project.description }}</p>
 
-{% endif %}
+                {% if project.url %}
+                <a class="btn btn-primary bt-lg rounded-0 my-3 rounded-2" href="{{project.url}}" target="_blank">Repositorio de Proyecto</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
-{% endfor %}
+</div>
+
+{% endblock %}
